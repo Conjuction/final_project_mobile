@@ -8,7 +8,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.nio.charset.StandardCharsets;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static helpers.Browserstack.getVideoUrl;
+
 
 public class Attach {
     @Attachment(value = "{attachName}", type = "text/plain")
@@ -24,13 +24,6 @@ public class Attach {
     @Attachment(value = "{attachName}", type = "image/png")
     public static byte[] screenshotAs(String attachName) {
         return ((TakesScreenshot) getWebDriver()).getScreenshotAs(OutputType.BYTES);
-    }
-
-    @Attachment(value = "Video", type = "text/html", fileExtension = ".html")
-    public static String addVideo(String sessionId) {
-        return "<html><body><video width='100%' height='100%' controls autoplay><source src='"
-                + getVideoUrl(sessionId)
-                + "' type='video/mp4'></video></body></html>";
     }
 
     public static String getSessionId() {
