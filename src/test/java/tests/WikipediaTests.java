@@ -2,6 +2,7 @@ package tests;
 
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
@@ -12,6 +13,7 @@ import static io.appium.java_client.AppiumBy.*;
 import static io.qameta.allure.Allure.step;
 
 public class WikipediaTests extends TestBase{
+    @Tag("browserstack")
     @Owner("Sukhinin Dmitrii")
     @Test
     @DisplayName("Success search")
@@ -26,6 +28,7 @@ public class WikipediaTests extends TestBase{
     }
 
     @Owner("Sukhinin Dmitrii")
+    @Tag("browserstack")
     @Test
     @DisplayName("Open article")
     void openArticleTest() {
