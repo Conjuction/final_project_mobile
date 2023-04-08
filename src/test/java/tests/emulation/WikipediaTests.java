@@ -1,7 +1,9 @@
-package tests;
+package tests.emulation;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import tests.TestBase;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
@@ -12,6 +14,7 @@ import static org.openqa.selenium.By.id;
 public class WikipediaTests extends TestBase {
     @DisplayName("Checking onboarding screen")
     @Test
+    @Tag("emulation")
     public void checkOnboardingScreen() {
 
         step("getting started check", () -> {
@@ -26,22 +29,4 @@ public class WikipediaTests extends TestBase {
             $(id("org.wikipedia.alpha:id/main_toolbar_wordmark")).shouldBe(visible);
         });
     }
-
-    @DisplayName("Checking text in due order")
-    @Test
-    void checkButtonLogIn() {
-
-        step("Click on the NavBar Menu button", () -> {
-            $(id("org.wikipedia.alpha:id/menu_overflow_button")).click();
-        });
-        step("Check button log in", () -> {
-            $(id("org.wikipedia.alpha:id/explore_overflow_account_name")).shouldHave(text("Log in to Wikipedia"));
-            $(id("org.wikipedia.alpha:id/explore_overflow_account_name")).click();
-        });
-
-        step("Check text on button at login form", () -> {
-            $(id("org.wikipedia.alpha:id/login_button")).shouldHave(text("Log in"));
-        });
-    }
 }
-
