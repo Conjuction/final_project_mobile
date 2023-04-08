@@ -11,9 +11,9 @@ import static com.codeborne.selenide.Selenide.*;
 import static io.appium.java_client.AppiumBy.id;
 import static io.qameta.allure.Allure.step;
 
+@Tag("emulation")
 public class WikipediaTests extends TestBase {
     @DisplayName("Checking onboarding screen")
-    @Tag("emulation")
     @Owner("Sukhinin Dmitrii")
     @Test
     public void checkOnboardingScreen() {
@@ -32,7 +32,6 @@ public class WikipediaTests extends TestBase {
     }
 
     @DisplayName("Successful article opening")
-    @Tag("emulation")
     @Owner("Sukhinin Dmitrii")
     @Test
     void openArticleTest() {
