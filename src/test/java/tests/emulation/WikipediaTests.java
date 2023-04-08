@@ -10,6 +10,7 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 import static io.appium.java_client.AppiumBy.id;
 import static io.qameta.allure.Allure.step;
+
 public class WikipediaTests extends TestBase {
     @DisplayName("Checking onboarding screen")
     @Tag("emulation")
@@ -29,6 +30,7 @@ public class WikipediaTests extends TestBase {
             $(id("org.wikipedia.alpha:id/main_toolbar_wordmark")).shouldBe(visible);
         });
     }
+
     @DisplayName("Successful article opening")
     @Tag("emulation")
     @Owner("Sukhinin Dmitrii")

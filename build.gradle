@@ -55,4 +55,15 @@ tasks.withType(Test) {
         }
     }
 }
+task emulation_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("emulation")
+    }
+}
+
+task browserstack_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("browserstack")
+    }
+}
 
