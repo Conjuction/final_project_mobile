@@ -41,7 +41,7 @@ public class WikipediaTests extends TestBase {
 
         step("Go to search input and type search", () -> {
             $(accessibilityId("Search Wikipedia")).click();
-            $(id("org.wikipedia.alpha:id/search_src_text")).sendKeys("David Bowie");
+            $(id("org.wikipedia.alpha:id/search_src_text")).sendKeys("GitHub");
         });
         step("Go to article", () ->
                 $(id("org.wikipedia.alpha:id/view_card_header_subtitle")).click());
