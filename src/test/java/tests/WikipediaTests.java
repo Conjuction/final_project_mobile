@@ -1,85 +1,46 @@
 package tests;
 
-import io.qameta.allure.Owner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import pages.AddLanguagePage;
-import pages.SearchPage;
-import pages.StartedPage;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.back;
 import static io.qameta.allure.Allure.step;
 import static org.openqa.selenium.By.id;
 
 public class WikipediaTests extends TestBase {
-    StartedPage startedPage = new StartedPage();
-    SearchPage searchPage = new SearchPage();
-    AddLanguagePage addLanguagePage = new AddLanguagePage();
-
-    @Owner("Sukhinin Dmitrii")
-    @Test
     @DisplayName("Checking onboarding screen")
-    void searchingWikipediaTest() {
-        step("Пропускаем шаги", () ->
-                back()
-        );
-        step("Нажимаем на строку ввода", () -> {
-            searchPage.clickSearch();
-        });
-        step("Вводим текст в строку поиска", () -> {
-            searchPage.setSearchValue();
-        });
-        step("Проверяем, что поиск сработал", () -> {
-            searchPage.checkResults();
+    @Test
+    public void checkOnboardingScreen() {
+
+        step("getting started check", () -> {
+            $(id("org.wikipedia.alpha:id/primaryTextView")).shouldBe(text("The Free Encyclopedia …in over 300 languages"));
+            $(id("org.wikipedia.alpha:id/fragment_onboarding_forward_button")).click();
+            $(id("org.wikipedia.alpha:id/primaryTextView")).shouldBe(text("New ways to explore"));
+            $(id("org.wikipedia.alpha:id/fragment_onboarding_forward_button")).click();
+            $(id("org.wikipedia.alpha:id/primaryTextView")).shouldBe(text("Reading lists with sync"));
+            $(id("org.wikipedia.alpha:id/fragment_onboarding_forward_button")).click();
+            $(id("org.wikipedia.alpha:id/primaryTextView")).shouldBe(text("Send anonymous data"));
+            $(id("org.wikipedia.alpha:id/acceptButton")).click();
+            $(id("org.wikipedia.alpha:id/main_toolbar_wordmark")).shouldBe(visible);
         });
     }
 
-    @Owner("Sukhinin Dmitrii")
+    @DisplayName("Checking text in due order")
     @Test
-    void getStartedWikipediaTest() {
-        step("Проверяем текст на первом экране приложения", () -> {
-            startedPage.firstStartedPageText();
+    void checkButtonLogIn() {
+
+        step("Click on the NavBar Menu button", () -> {
+            $(id("org.wikipedia.alpha:id/menu_overflow_button")).click();
         });
-        step("Нажимаем кнопку продолжить и проверяем текст на втором экране", () -> {
-            startedPage.forwardButtonClick()
-                    .secondStartedPageText();
+        step("Check button log in", () -> {
+            $(id("org.wikipedia.alpha:id/explore_overflow_account_name")).shouldHave(text("Log in to Wikipedia"));
+            $(id("org.wikipedia.alpha:id/explore_overflow_account_name")).click();
         });
-        step("Нажимаем кнопку продолжить и проверяем текст на третьем экране", () -> {
-            startedPage.forwardButtonClick()
-                    .thirdStartedPageText();
-        });
-        step("Нажимаем кнопку продолжить и проверяем текст на четвертом экране", () -> {
-            startedPage.forwardButtonClick()
-                    .fourthStartedPageText();
-        });
-        step("Нажимаем кнопку Начать и проверяем наличие строки поиска", () -> {
-            startedPage.checkStartedPage();
-        });
-    }
-    @Owner("Sukhinin Dmitrii")
-    @Test
-    void addLanguage() {
-        step("Проверяем текст на первом экране приложения", () -> {
-            startedPage.firstStartedPageText();
-        });
-        step("Пропускаем шаги", () -> {
-            back();
-        });
-        step("Нажимаем на иконку меню с настройками", () -> {
-            addLanguagePage.clickMenuButton();
-        });
-        step("Выбираем пункт настройки", () -> {
-            addLanguagePage.clickSettingsButton();
-        });
-        step("Добавляем новый язык", () -> {
-            addLanguagePage.clickAddLanguageButton()
-                    .setLanguage();
-        });
-        step("Проверяем, что добавлен новый язык", () -> {
-            addLanguagePage.checkLanguage();
+
+        step("Check text on button at login form", () -> {
+            $(id("org.wikipedia.alpha:id/login_button")).shouldHave(text("Log in"));
         });
     }
 }
