@@ -2,6 +2,7 @@ package drivers;
 
 import com.codeborne.selenide.WebDriverProvider;
 
+import config.MobileConfig;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import org.aeonbits.owner.ConfigFactory;
@@ -21,6 +22,8 @@ import static io.appium.java_client.remote.MobilePlatform.ANDROID;
 import static org.apache.commons.io.FileUtils.copyInputStreamToFile;
 
 public class LocalMobileDriver implements WebDriverProvider {
+    public static MobileConfig config = ConfigFactory.create(MobileConfig.class, System.getProperties());
+
     @Nonnull
     @Override
     public WebDriver createDriver(@Nonnull Capabilities capabilities) {
@@ -29,11 +32,11 @@ public class LocalMobileDriver implements WebDriverProvider {
 
         options.setAutomationName(ANDROID_UIAUTOMATOR2)
                 .setPlatformName(ANDROID)
-                .setDeviceName("Pixel 4 API 31")
-                .setPlatformVersion("12.0")
+                .setDeviceName(config.deviceName())
+                .setPlatformVersion(config.platformVersion())
                 .setApp(getAppPath())
-                .setAppPackage("org.wikipedia.alpha")
-                .setAppActivity("org.wikipedia.main.MainActivity");
+                .setAppPackage(config.appPackage())
+                .setAppActivity(config.appActivity());
 
         return new AndroidDriver(getAppiumServerUrl(), options);
     }
@@ -41,7 +44,7 @@ public class LocalMobileDriver implements WebDriverProvider {
     private String getAppPath() {
         String appUrl = "https://github.com/ncr0s/apps-android-wikipedia/" +
                 "releases/download/latest/app-alpha-debug.apk";
-        String appPath = "src/test/resources/apps/app-alpha-universal-release.apk";
+        String appPath = config.getAppPath();
 
         File app = new File(appPath);
         if (!app.exists()) {
@@ -56,10 +59,9 @@ public class LocalMobileDriver implements WebDriverProvider {
 
     private static URL getAppiumServerUrl() {
         try {
-            return new URL("http://localhost:4723/wd/hub");
+            return new URL(config.appiumServer());
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
     }
-
 }
