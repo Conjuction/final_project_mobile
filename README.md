@@ -51,7 +51,7 @@ gradle clean emulation_test -Denv=emulation
 
 ## <img width="4%" title="Jenkins" src="media/logo/Jenkins.svg"> Запуск тестов в [Jenkins](https://jenkins.autotests.cloud/)
 
-Для запуска сборки необходимо перейти в раздел <code><strong>*Собрать с параметрами*</strong></code> и нажать кнопку <code><strong>*Собрать*</strong></code>.
+Для запуска сборки необходимо нажать кнопку <code><strong>*Собрать сейчас*</strong></code>.
 
 <p align="center">
   <img src="media/screen/start_jenkins.png" alt="Jenkins" width="800">
@@ -60,7 +60,8 @@ gradle clean emulation_test -Denv=emulation
 После выполнения сборки, в блоке <code><strong>*История сборок*</strong></code> напротив номера сборки появится
 значок *Allure Report* и *Allure TestOps* кликнув по которому, откроется страница с сформированным html-отчетом и тестовой документацией.
 
-## <img width="4%" title="Allure Report" src="media/logo/Allure_Report.svg"> Отчет о результатах тестирования в [Allure Report](https://jenkins.autotests.cloud/job/015_aziyatdinov_final_mobile/)
+## <img width="4%" title="Allure Report" src="media/logo/Allure_Report.svg"> Отчет о результатах тестирования в [Allure Report](https://jenkins.autotests.cloud/job/SUkhinin_diplom_mobile/)
+
 
 <p align="center">
   <img src="media/screen/jenkins_overview.png" alt="allure-report" width="900">
@@ -70,7 +71,7 @@ gradle clean emulation_test -Denv=emulation
   <img src="media/screen/jenkins_behaviors.png" alt="allure-report_1" width="900">
 </p>
 
-## <img width="4%" title="Allure TestOPS" src="media/logo/Allure_TO.svg"> Интеграция с [Allure TestOps](https://allure.autotests.cloud/launch/18428/)
+## <img width="4%" title="Allure TestOPS" src="media/logo/Allure_TO.svg"> Интеграция с [Allure TestOps](https://allure.autotests.cloud/launch/22026/)
 
 ### Основной дашборд
 
