@@ -11,6 +11,7 @@ import static com.codeborne.selenide.Selenide.*;
 import static io.appium.java_client.AppiumBy.accessibilityId;
 import static io.appium.java_client.AppiumBy.id;
 import static io.qameta.allure.Allure.step;
+import static org.openqa.selenium.By.className;
 
 @Tag("browserstack")
 public class WikipediaTests extends TestBase {
@@ -46,5 +47,20 @@ public class WikipediaTests extends TestBase {
         step("Verify article opens with error", () ->
                 $(id("org.wikipedia.alpha:id/view_wiki_error_text"))
                         .shouldHave(exactText("An error occurred")));
+    }
+    @DisplayName("Add language")
+    @Test
+    @Owner("Sukhinin Dmitrii")
+    void addLanguageTest() {
+        back();
+        step("Type search", () ->
+                $(accessibilityId("Search Wikipedia")).click());
+        step("Add new language", () -> {
+            $(id("org.wikipedia.alpha:id/search_lang_button")).click();
+            $$(id("org.wikipedia.alpha:id/wiki_language_title")).findBy(text("ADD LANGUAGE")).click();
+            $$(id("org.wikipedia.alpha:id/localized_language_name")).findBy(text("Español")).click();
+        });
+        step("Verify added language", () ->
+                $$(className("android.widget.TextView")).findBy(text("Español")).shouldBe(visible));
     }
 }
