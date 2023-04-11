@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.*;
 import static io.appium.java_client.AppiumBy.accessibilityId;
 import static io.appium.java_client.AppiumBy.id;
 import static io.qameta.allure.Allure.step;
-import static org.openqa.selenium.By.className;
+
 
 @Tag("browserstack")
 public class WikipediaTests extends TestBase {
@@ -48,18 +48,22 @@ public class WikipediaTests extends TestBase {
                 $(id("org.wikipedia.alpha:id/view_wiki_error_text"))
                         .shouldHave(exactText("An error occurred")));
     }
-    @DisplayName("Add language")
+    @DisplayName("Проверка закрытия объявления")
     @Test
     @Owner("Sukhinin Dmitrii")
-    void addLanguageTest() {
-        step("Type search", () ->
-                $(accessibilityId("Search Wikipedia")).click());
-        step("Add new language", () -> {
-            $(id("org.wikipedia.alpha:id/search_lang_button")).click();
-            $$(id("org.wikipedia.alpha:id/wiki_language_title")).findBy(text("ADD LANGUAGE")).click();
-            $$(id("org.wikipedia.alpha:id/localized_language_name")).findBy(text("Español")).click();
+    void closeAnnouncementTest() {
+
+        step("Check appeared announcement", () ->
+                $(id("org.wikipedia.alpha:id/view_announcement_text"))
+                        .shouldHave(partialText("You can now choose what to show on your feed")));
+        step("Hide announcement", () -> {
+            $(id("org.wikipedia.alpha:id/view_announcement_action_negative"))
+                    .shouldHave(text("GOT IT"));
+            $(id("org.wikipedia.alpha:id/view_announcement_action_negative")).click();
         });
-        step("Verify added language", () ->
-                $$(className("android.widget.TextView")).findBy(text("Español")).shouldBe(visible));
+        step("Verify announcement is hidden", () ->
+                $(id("org.wikipedia.alpha:id/view_announcement_text"))
+                        .shouldNotBe((visible)));
     }
+
 }
