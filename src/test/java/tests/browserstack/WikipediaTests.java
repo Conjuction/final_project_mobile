@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import tests.TestBase;
 
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 import static io.appium.java_client.AppiumBy.accessibilityId;
@@ -48,22 +49,17 @@ public class WikipediaTests extends TestBase {
                 $(id("org.wikipedia.alpha:id/view_wiki_error_text"))
                         .shouldHave(exactText("An error occurred")));
     }
-    @DisplayName("Проверка закрытия объявления")
+    @DisplayName("Search validation")
     @Test
     @Owner("Sukhinin Dmitrii")
-    void closeAnnouncementTest() {
+    void searchInputTest() {
 
-        step("Check appeared announcement", () ->
-                $(id("org.wikipedia.alpha:id/view_announcement_text"))
-                        .shouldHave(partialText("You can now choose what to show on your feed")));
-        step("Hide announcement", () -> {
-            $(id("org.wikipedia.alpha:id/view_announcement_action_negative"))
-                    .shouldHave(text("GOT IT"));
-            $(id("org.wikipedia.alpha:id/view_announcement_action_negative")).click();
+        step("Go to search input and type search", () -> {
+            $(accessibilityId("Search Wikipedia")).click();
+            $(id("org.wikipedia.alpha:id/search_src_text")).sendKeys("Android");
         });
-        step("Verify announcement is hidden", () ->
-                $(id("org.wikipedia.alpha:id/view_announcement_text"))
-                        .shouldNotBe((visible)));
+        step("Verify search content size", () ->
+                $$(id("org.wikipedia.alpha:id/page_list_item_title"))
+                        .shouldHave(sizeGreaterThan(0)));
     }
-
 }
