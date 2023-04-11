@@ -52,7 +52,6 @@ public class WikipediaTests extends TestBase {
     @Test
     @Owner("Sukhinin Dmitrii")
     void addLanguageTest() {
-        back();
         step("Type search", () ->
                 $(accessibilityId("Search Wikipedia")).click());
         step("Add new language", () -> {
