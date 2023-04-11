@@ -1,4 +1,8 @@
-# <img width="5%" title="Wikipedia" src="media/logo/Wikipedia.svg"> Дипломный проект по тестирования мобильного приложения [Wikipedia](https://github.com/wikimedia/apps-android-wikipedia/)
+# Дипломный проект по тестирования мобильного приложения [Wikipedia](https://github.com/wikimedia/apps-android-wikipedia/)
+
+<p align="center">
+  <img src="media/logo/Wikipedia.svg" alt="Wikipedia" width="900">
+</p>
 
 ## :open_book: Содержание:
 
