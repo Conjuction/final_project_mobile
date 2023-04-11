@@ -1,7 +1,7 @@
 # Дипломный проект по тестирования мобильного приложения [Wikipedia](https://github.com/wikimedia/apps-android-wikipedia/)
 
 <p align="center">
-  <img src="media/logo/Wikipedia.svg" alt="Wikipedia" width="800">
+  <img src="media/logo/Wikipedia.svg" alt="Wikipedia" width="700">
 </p>
 
 ## :open_book: Содержание:
